@@ -98,11 +98,14 @@
   $dataAll =  "";
 
     if(isset($_GET['id'])){
-      $sql2 = "SELECT * FROM device_tbl
-              WHERE id={$_GET['id']}";
+      $sql2 = "SELECT * FROM module a
+               LEFT JOIN device_tbl b
+               ON a.device_link=b.id
+               WHERE b.id={$_GET['id']}";
       $result2 = mysqli_query($conn, $sql2);
       $row = mysqli_fetch_array($result2);
 
+	    //module 테이블로 연결된 device 테이블의 행이 2개가 나오기 때문에 UI구성과 배열 구성을 바꿀 필요가 있다.
       $dataAll =
           "{
               IP : '$row[hostname]',
