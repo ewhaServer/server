@@ -74,9 +74,11 @@
     $id = $_SESSION['site_name'];
 
     $mysqli = mysqli_connect("localhost","root","ewha0110","ewhaglobal");
-		$check = "SELECT * FROM device_tbl a
-              LEFT JOIN site_tbl b
-              ON a.site_link=b.id
+		$check = "SELECT * FROM module a
+              LEFT JOIN device_tbl b
+              ON a.device_link=b.id
+              LEFT JOIN site_tbl c
+              ON b.site_link=c.id
               WHERE site_name='$id'
   				   ";
 
