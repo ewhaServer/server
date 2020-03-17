@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <html>
@@ -77,8 +76,8 @@
 
     $id = $_SESSION['site_name'];
 
-    $mysqli = mysqli_connect("localhost","root","rhs111","user");
-      mysqli_set_charset($mysqli, 'utf8');
+    $mysqli = mysqli_connect("localhost","root","ewha0110","ewhaglobal");
+
 		$check = "SELECT * FROM module a
               LEFT JOIN device_tbl b
               ON a.device_link = b.id
@@ -95,7 +94,6 @@
             "{
                 IP : '$row[hostname]',
                 HTTP_Port : '$row[http_port]',
-
                 site_name : '$row[site_name]',
                 relay :
                 [
@@ -110,26 +108,32 @@
                       alias : '$row[relay2_alias]'
                     },
                     {
+                      type : '$row[relay3_type]',
                       status : '$row[relay3_status]',
                       alias : '$row[relay3_alias]'
                     },
                     {
+                      type : '$row[relay4_type]',
                       status : '$row[relay4_status]',
                       alias : '$row[relay4_alias]'
                     },
                     {
+                      type : '$row[relay5_type]',
                       status : '$row[relay5_status]',
                       alias : '$row[relay5_alias]'
                     },
                     {
+                      type : '$row[relay6_type]',
                       status : '$row[relay6_status]',
                       alias : '$row[relay6_alias]'
                     },
                     {
+                      type : '$row[relay7_type]',
                       status : '$row[relay7_status]',
                       alias : '$row[relay7_alias]'
                     },
                     {
+                      type : '$row[relay8_type]',
                       status : '$row[relay8_status]',
                       alias : '$row[relay8_alias]'
                     }
@@ -141,8 +145,10 @@
 
      var tmpStr = "";
 
-        for (var i=0; i<8; i++) {   // loop for PIC-2000
-         if (dataAll.relay[i].type == "fan") {
+        for (var i=4; i<8; i++) {
+           // loop for PIC-2000
+   if (dataAll.relay[i].type == "fan") {
+
            tmpStr +=
               "<div class=\"select\" id=\"btn\">"+
             "<fieldset class=\"ui-grid-d\">"
@@ -153,23 +159,27 @@
                 +"</div>"
               +"</div>"
               +"<div class=\"ui-block-b\">"
-                +"<input type=\"button\" onclick=\"doCtrlData("+(i*4+1)+", 'close');doCtrlData("+(i*4+2)+", 'open');doCtrlData("+(i*4+3)+", 'open');\" value=\"1단\"/>"
-
+                +"<input type=\"button\" onclick=\"doCtrlData("+(i+1)+", 'close');\" value=\"1단\"/>"
+  +"<input type=\"button\" onclick=\"doCtrlData("+(i+1)+", 'close');doCtrlData("+(4)+", 'close');doCtrlData("+(3)+", 'open');\" value=\"5단\"/>"
               +"</div>"
               +"<div class=\"ui-block-c\">"
-                +"<input type=\"button\" onclick=\"doCtrlData("+(i*4+2)+", 'close');doCtrlData("+(i*4+1)+", 'open');doCtrlData("+(i*4+3)+", 'open');\" value=\"2단\"/>"
+                +"<input type=\"button\" onclick=\"doCtrlData("+(i+1)+", 'close');doCtrlData("+(1)+", 'close');\" value=\"2단\"/>"
+                +"<input type=\"button\" onclick=\"doCtrlData("+(i+1)+", 'close');doCtrlData("+(1)+", 'close');doCtrlData("+(2)+", 'close');doCtrlData("+(4)+", 'open');\" value=\"6단\"/>"
               +"</div>"
               +"<div class=\"ui-block-d\">"
-                +"<input type=\"button\" onclick=\"doCtrlData("+(i*4+3)+", 'close');doCtrlData("+(i*4+2)+", 'open');doCtrlData("+(i*4+1)+", 'open');\" value=\"3단\"/>"
+                +"<input type=\"button\" onclick=\"doCtrlData("+(i+1)+", 'close');doCtrlData("+(2)+", 'close');doCtrlData("+(1)+", 'open');\" value=\"3단\"/>"
++"<input type=\"button\" onclick=\"doCtrlData("+(i+1)+", 'close');doCtrlData("+(1)+", 'close');doCtrlData("+(3)+", 'close');doCtrlData("+(2)+", 'open');\" value=\"7단\"/>"
               +"</div>"
               +"<div class=\"ui-block-e\">"
-                +"<input type=\"button\" onclick=\"doCtrlData("+(i*4+3)+", 'open');doCtrlData("+(i*4+2)+", 'open');doCtrlData("+(i*4+1)+", 'open');\" value=\"off\"/>"
+                +"<input type=\"button\" onclick=\"doCtrlData("+(i+1)+", 'close');doCtrlData("+(3)+", 'close');doCtrlData("+(2)+", 'open');\" value=\"4단\"/>"
+                +"<input type=\"button\" onclick=\"doCtrlData("+(i+1)+", 'close');doCtrlData("+(1)+", 'close');doCtrlData("+(4)+", 'close');doCtrlData("+(3)+", 'open');\" value=\"8단\"/>"
+  +"<input type=\"button\" onclick=\"doCtrlData("+(i+1)+", 'open');doCtrlData("+(1)+", 'open');doCtrlData("+(2)+", 'open');doCtrlData("+(3)+", 'open');doCtrlData("+(4)+", 'open');\" value=\"off\"/>"
               +"</div>"
               +"</fieldset>"
               +"</div>"
           ;
 
-          };
+        }
       };
 
 
